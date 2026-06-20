@@ -1,0 +1,176 @@
+@import "tailwindcss";
+
+/* ───────────────────────────── Design tokens ───────────────────────────── */
+@theme {
+  /* Brand palette — deep "midnight travel" navy + warm gold, echoing the
+     brochures. */
+  --color-ink: #060a17;
+  --color-midnight: #0a1024;
+  --color-navy: #0e1b3a;
+  --color-navy-700: #16264d;
+  --color-navy-500: #24386b;
+
+  --color-gold: #f0b429;
+  --color-gold-soft: #fbd34d;
+  --color-gold-deep: #c98a16;
+
+  --color-cream: #faf6ec;
+  --color-sand: #efe6d3;
+
+  /* Fonts (wired to next/font CSS variables in layout.tsx). */
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-playfair), ui-serif, Georgia, serif;
+  --font-script: var(--font-caveat), cursive;
+
+  /* Named animations → generate `animate-*` utilities. */
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-float-slow: float 9s ease-in-out infinite;
+  --animate-spin-slow: spin 26s linear infinite;
+  --animate-twinkle: twinkle 4s ease-in-out infinite;
+  --animate-shimmer: shimmer 2.5s linear infinite;
+  --animate-marquee: marquee 38s linear infinite;
+  --animate-aurora: aurora 16s ease-in-out infinite;
+  --animate-pulse-ring: pulseRing 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-dash: dash 3.5s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0.25; transform: scale(0.85); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes aurora {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.55; }
+  33% { transform: translate(6%, -4%) scale(1.12); opacity: 0.8; }
+  66% { transform: translate(-5%, 5%) scale(1.05); opacity: 0.65; }
+}
+@keyframes pulseRing {
+  0% { transform: scale(0.7); opacity: 0.8; }
+  80%, 100% { transform: scale(2.2); opacity: 0; }
+}
+@keyframes dash {
+  0% { stroke-dashoffset: 240; }
+  60%, 100% { stroke-dashoffset: 0; }
+}
+
+/* ───────────────────────────── Base styles ─────────────────────────────── */
+:root {
+  color-scheme: dark;
+}
+
+* {
+  border-color: color-mix(in srgb, white 8%, transparent);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--color-ink);
+  color: #e8ecf6;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-gold) 75%, transparent);
+  color: #1a1205;
+}
+
+/* Slim, branded scrollbar. */
+::-webkit-scrollbar { width: 11px; }
+::-webkit-scrollbar-track { background: var(--color-midnight); }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--color-navy-500), var(--color-navy));
+  border-radius: 999px;
+  border: 2px solid var(--color-midnight);
+}
+::-webkit-scrollbar-thumb:hover { background: var(--color-gold-deep); }
+
+/* ──────────────────────────── Reusable utilities ───────────────────────── */
+@utility text-gradient-gold {
+  background-image: linear-gradient(120deg, #fde9a8, var(--color-gold) 45%, var(--color-gold-deep));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility glass {
+  background: color-mix(in srgb, white 6%, transparent);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid color-mix(in srgb, white 12%, transparent);
+}
+
+@utility glass-strong {
+  background: color-mix(in srgb, #0b1430 72%, transparent);
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  border: 1px solid color-mix(in srgb, white 12%, transparent);
+}
+
+/* Shared section rhythm + max width. */
+@utility container-x {
+  width: 100%;
+  max-width: 80rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+/* Soft radial "spotlight" used behind headings. */
+@utility spotlight {
+  background: radial-gradient(
+    60% 60% at 50% 0%,
+    color-mix(in srgb, var(--color-gold) 18%, transparent),
+    transparent 70%
+  );
+}
+
+/* Decorative animated gradient border for cards. */
+.card-glow::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(140deg, color-mix(in srgb, var(--color-gold) 60%, transparent), transparent 40%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+.card-glow:hover::before { opacity: 1; }
+
+/* Grain / noise overlay for depth (pure CSS, no asset). */
+.noise {
+  background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.05) 1px, transparent 0);
+  background-size: 3px 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
