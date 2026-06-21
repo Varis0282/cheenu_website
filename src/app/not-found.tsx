@@ -9,12 +9,12 @@ export default function NotFound() {
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden px-5 py-32 text-center">
       <Backdrop />
       <div className="relative">
-        <div className="mx-auto inline-flex h-20 w-20 items-center justify-center rounded-full bg-gold/15 text-gold">
+        <div className="mx-auto inline-flex h-20 w-20 items-center justify-center rounded-full bg-gold/15 text-accent">
           <Compass className="h-10 w-10 animate-spin-slow" strokeWidth={1.4} />
         </div>
-        <p className="mt-6 font-script text-3xl text-gold-soft">Lost your way?</p>
-        <h1 className="mt-1 font-display text-6xl font-bold text-white sm:text-7xl">404</h1>
-        <p className="mx-auto mt-4 max-w-md text-white/65">
+        <p className="mt-6 font-script text-3xl text-accent">Lost your way?</p>
+        <h1 className="mt-1 font-display text-6xl font-bold text-foreground sm:text-7xl">404</h1>
+        <p className="mx-auto mt-4 max-w-md text-muted">
           This page wandered off the map. Let&apos;s get you back to dreaming up
           your next adventure.
         </p>
@@ -33,7 +33,7 @@ export default function NotFound() {
             <Link
               key={d.slug}
               href={`/destinations/${d.slug}`}
-              className="rounded-full glass px-4 py-2 text-sm text-white/80 transition-colors hover:text-gold-soft"
+              className="rounded-full glass px-4 py-2 text-sm text-foreground transition-colors hover:text-accent"
             >
               {d.flag} {d.name}
             </Link>

@@ -25,15 +25,15 @@ export default function SectionHeading({
       )}
     >
       {kicker && (
-        <span className="font-script text-2xl text-gold-soft sm:text-3xl">
+        <span className="font-script text-2xl text-accent sm:text-3xl">
           {kicker}
         </span>
       )}
-      <h2 className="mt-1 font-display text-3xl font-bold leading-[1.1] text-white sm:text-4xl md:text-5xl">
+      <h2 className="mt-1 font-display text-3xl font-bold leading-[1.1] text-foreground sm:text-4xl md:text-5xl">
         {title}
       </h2>
       {subtitle && (
-        <p className="mt-4 text-base leading-relaxed text-white/65 sm:text-lg">
+        <p className="mt-4 text-base leading-relaxed text-muted sm:text-lg">
           {subtitle}
         </p>
       )}

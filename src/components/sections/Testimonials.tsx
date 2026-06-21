@@ -48,25 +48,25 @@ export default function Testimonials() {
         <div className="mt-14 grid gap-5 md:grid-cols-3">
           {testimonials.map((t, i) => (
             <Reveal key={t.name} delay={i * 0.1}>
-              <figure className="relative h-full rounded-3xl border border-white/10 bg-white/[0.03] p-7">
-                <Quote className="h-9 w-9 text-gold/40" />
-                <div className="mt-3 flex gap-0.5 text-gold">
+              <figure className="relative h-full rounded-3xl border border-line bg-surface p-7">
+                <Quote className="h-9 w-9 text-accent/40" />
+                <div className="mt-3 flex gap-0.5 text-accent">
                   {Array.from({ length: 5 }).map((_, s) => (
                     <Star key={s} className="h-4 w-4 fill-current" />
                   ))}
                 </div>
-                <blockquote className="mt-4 text-sm leading-relaxed text-white/80">
+                <blockquote className="mt-4 text-sm leading-relaxed text-foreground">
                   “{t.quote}”
                 </blockquote>
-                <figcaption className="mt-6 flex items-center gap-3 border-t border-white/10 pt-5">
+                <figcaption className="mt-6 flex items-center gap-3 border-t border-line pt-5">
                   <span
-                    className={`inline-flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br ${t.color} text-sm font-bold text-white ring-1 ring-white/20`}
+                    className={`inline-flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br ${t.color} text-sm font-bold text-foreground ring-1 ring-white/20`}
                   >
                     {t.initials}
                   </span>
                   <span>
-                    <span className="block font-semibold text-white">{t.name}</span>
-                    <span className="block text-xs text-gold-soft">{t.trip}</span>
+                    <span className="block font-semibold text-foreground">{t.name}</span>
+                    <span className="block text-xs text-accent">{t.trip}</span>
                   </span>
                 </figcaption>
               </figure>

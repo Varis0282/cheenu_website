@@ -60,10 +60,10 @@ export default function ContactPage() {
           {/* Left: contact details */}
           <Reveal>
             <div className="lg:sticky lg:top-28">
-              <h2 className="font-display text-2xl font-bold text-white">
+              <h2 className="font-display text-2xl font-bold text-foreground">
                 Talk to a real human
               </h2>
-              <p className="mt-3 text-sm leading-relaxed text-white/65">
+              <p className="mt-3 text-sm leading-relaxed text-muted">
                 No call centres, no bots. Reach out however you like — we usually
                 reply within a few hours.
               </p>
@@ -71,15 +71,15 @@ export default function ContactPage() {
               <div className="mt-8 space-y-3">
                 {contactItems.map((c) => {
                   const inner = (
-                    <div className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-4 transition-colors hover:bg-white/[0.05]">
-                      <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gold/15 text-gold">
+                    <div className="flex items-center gap-4 rounded-2xl border border-line bg-surface p-4 transition-colors hover:bg-surface2">
+                      <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gold/15 text-accent">
                         <c.icon className="h-5 w-5" />
                       </span>
                       <span>
-                        <span className="block text-xs uppercase tracking-wide text-white/50">
+                        <span className="block text-xs uppercase tracking-wide text-faint">
                           {c.label}
                         </span>
-                        <span className="block text-sm font-medium text-white">
+                        <span className="block text-sm font-medium text-foreground">
                           {c.value}
                         </span>
                       </span>
@@ -102,9 +102,9 @@ export default function ContactPage() {
               </div>
 
               <div className="mt-6 flex items-center gap-3 rounded-2xl border border-gold/20 bg-gold/5 p-4">
-                <Clock className="h-5 w-5 shrink-0 text-gold" />
-                <p className="text-sm text-white/75">
-                  <span className="font-semibold text-white">Quick to respond.</span>{" "}
+                <Clock className="h-5 w-5 shrink-0 text-accent" />
+                <p className="text-sm text-muted">
+                  <span className="font-semibold text-foreground">Quick to respond.</span>{" "}
                   Departures available all year round — customized dates for groups.
                 </p>
               </div>

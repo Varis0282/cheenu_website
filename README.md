@@ -35,19 +35,33 @@ Almost everything the client cares about lives in two files:
 | What to change | File |
 | --- | --- |
 | **Brand name, tagline, phone, email, socials, site URL** | `src/lib/site.ts` |
-| **Destinations + group-tour content** | `src/lib/destinations.ts` |
+| **Destinations, prices, photos, group-tour content** | `src/lib/destinations.ts` |
 
 > ⚠️ **Brand name** is currently set to **"Cheenu Travels"** as a placeholder
 > (from the repo name). Change `name` in `src/lib/site.ts` to the real business
 > name. Phone (`+91 93408 52824`) and email were taken from the brochures —
 > please double-check them.
 
-### Use real photos instead of the illustrated scenes
+### Photos
 
-Each destination uses a hand-built illustrated "scene" by default (so nothing
-ever breaks). To use a real photo instead, drop an image in `public/images/` and
-set the `image` field on that destination in `src/lib/destinations.ts`. Remote
-photos from Unsplash/Cloudinary are already whitelisted in `next.config.ts`.
+Destinations use real **Unsplash** photos (free for commercial use) via
+`next/image`, with a hand-built illustrated "scene" underneath as a graceful
+fallback so nothing ever shows a broken image. Each destination's `image` lives
+in `src/lib/destinations.ts` — swap in your own by dropping a file in
+`public/images/` and pointing `image` at it, or by changing the Unsplash URL.
+Allowed remote hosts are configured in `next.config.ts`.
+
+### Prices
+
+Set per-destination starting prices (INR) via the `price` field in
+`src/lib/destinations.ts`. They're formatted as Indian rupees automatically and
+shown on the cards, hero and destination pages.
+
+### Dark / light mode
+
+A toggle in the header switches themes (default: dark, remembered per visitor).
+Colours are driven by semantic tokens in `src/app/globals.css` — photo tiles,
+the footer and feature bands are intentionally kept dark in both themes.
 
 ## ☁️ Deploy
 

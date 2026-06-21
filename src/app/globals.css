@@ -1,9 +1,12 @@
 @import "tailwindcss";
 
+/* Class-based dark mode: `dark:` variants + tokens key off a `.dark` ancestor,
+   so we can also force individual sections dark (photo tiles, footer, CTA). */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* ───────────────────────────── Design tokens ───────────────────────────── */
 @theme {
-  /* Brand palette — deep "midnight travel" navy + warm gold, echoing the
-     brochures. */
+  /* Brand palette — deep "midnight travel" navy + warm gold. */
   --color-ink: #060a17;
   --color-midnight: #0a1024;
   --color-navy: #0e1b3a;
@@ -16,6 +19,16 @@
 
   --color-cream: #faf6ec;
   --color-sand: #efe6d3;
+
+  /* Semantic, theme-aware tokens (flip between light / dark below). */
+  --color-background: var(--c-bg);
+  --color-surface: var(--c-surface);
+  --color-surface2: var(--c-surface-2);
+  --color-foreground: var(--c-fg);
+  --color-muted: var(--c-muted);
+  --color-faint: var(--c-faint);
+  --color-line: var(--c-line);
+  --color-accent: var(--c-accent);
 
   /* Fonts (wired to next/font CSS variables in layout.tsx). */
   --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
@@ -32,6 +45,50 @@
   --animate-aurora: aurora 16s ease-in-out infinite;
   --animate-pulse-ring: pulseRing 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   --animate-dash: dash 3.5s ease-in-out infinite;
+}
+
+/* Light theme (default tokens). */
+:root {
+  --c-bg: #f4efe4;
+  --c-surface: #ffffff;
+  --c-surface-2: #fbf7ef;
+  --c-fg: #15213f;
+  --c-muted: #4b556b;
+  --c-faint: #6f7689;
+  --c-line: rgba(20, 30, 60, 0.12);
+  --c-accent: #a9760f;
+
+  --glass-bg: rgba(255, 255, 255, 0.62);
+  --glass-border: rgba(20, 30, 60, 0.1);
+  --glass-strong-bg: rgba(255, 255, 255, 0.82);
+
+  --grad-from: #e0a92e;
+  --grad-via: #c98a16;
+  --grad-to: #9a6606;
+
+  color-scheme: light;
+}
+
+/* Dark theme. */
+.dark {
+  --c-bg: #060a17;
+  --c-surface: rgba(255, 255, 255, 0.03);
+  --c-surface-2: rgba(255, 255, 255, 0.06);
+  --c-fg: #e8ecf6;
+  --c-muted: rgba(232, 236, 246, 0.66);
+  --c-faint: rgba(232, 236, 246, 0.46);
+  --c-line: rgba(255, 255, 255, 0.1);
+  --c-accent: #fbd34d;
+
+  --glass-bg: rgba(255, 255, 255, 0.06);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-strong-bg: rgba(11, 20, 48, 0.72);
+
+  --grad-from: #fde9a8;
+  --grad-via: #f0b429;
+  --grad-to: #c98a16;
+
+  color-scheme: dark;
 }
 
 @keyframes float {
@@ -65,26 +122,19 @@
 }
 
 /* ───────────────────────────── Base styles ─────────────────────────────── */
-:root {
-  color-scheme: dark;
-}
-
-* {
-  border-color: color-mix(in srgb, white 8%, transparent);
-}
-
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background-color: var(--color-ink);
-  color: #e8ecf6;
+  background-color: var(--color-background);
+  color: var(--color-foreground);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 ::selection {
@@ -92,39 +142,37 @@ body {
   color: #1a1205;
 }
 
-/* Slim, branded scrollbar. */
 ::-webkit-scrollbar { width: 11px; }
-::-webkit-scrollbar-track { background: var(--color-midnight); }
+::-webkit-scrollbar-track { background: var(--color-background); }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(var(--color-navy-500), var(--color-navy));
+  background: color-mix(in srgb, var(--color-foreground) 28%, transparent);
   border-radius: 999px;
-  border: 2px solid var(--color-midnight);
+  border: 2px solid var(--color-background);
 }
 ::-webkit-scrollbar-thumb:hover { background: var(--color-gold-deep); }
 
 /* ──────────────────────────── Reusable utilities ───────────────────────── */
 @utility text-gradient-gold {
-  background-image: linear-gradient(120deg, #fde9a8, var(--color-gold) 45%, var(--color-gold-deep));
+  background-image: linear-gradient(120deg, var(--grad-from), var(--grad-via) 50%, var(--grad-to));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
 @utility glass {
-  background: color-mix(in srgb, white 6%, transparent);
+  background: var(--glass-bg);
   backdrop-filter: blur(14px) saturate(140%);
   -webkit-backdrop-filter: blur(14px) saturate(140%);
-  border: 1px solid color-mix(in srgb, white 12%, transparent);
+  border: 1px solid var(--glass-border);
 }
 
 @utility glass-strong {
-  background: color-mix(in srgb, #0b1430 72%, transparent);
+  background: var(--glass-strong-bg);
   backdrop-filter: blur(18px) saturate(150%);
   -webkit-backdrop-filter: blur(18px) saturate(150%);
-  border: 1px solid color-mix(in srgb, white 12%, transparent);
+  border: 1px solid var(--glass-border);
 }
 
-/* Shared section rhythm + max width. */
 @utility container-x {
   width: 100%;
   max-width: 80rem;
@@ -132,7 +180,6 @@ body {
   padding-inline: 1.25rem;
 }
 
-/* Soft radial "spotlight" used behind headings. */
 @utility spotlight {
   background: radial-gradient(
     60% 60% at 50% 0%,
@@ -141,7 +188,6 @@ body {
   );
 }
 
-/* Decorative animated gradient border for cards. */
 .card-glow::before {
   content: "";
   position: absolute;
@@ -157,12 +203,6 @@ body {
   pointer-events: none;
 }
 .card-glow:hover::before { opacity: 1; }
-
-/* Grain / noise overlay for depth (pure CSS, no asset). */
-.noise {
-  background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.05) 1px, transparent 0);
-  background-size: 3px 3px;
-}
 
 @media (prefers-reduced-motion: reduce) {
   *,

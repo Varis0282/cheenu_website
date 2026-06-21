@@ -6,14 +6,14 @@ type Variant = "primary" | "outline" | "ghost" | "whatsapp";
 type Size = "md" | "lg";
 
 const base =
-  "group relative inline-flex items-center justify-center gap-2 rounded-full font-semibold tracking-wide transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-ink disabled:opacity-60 disabled:pointer-events-none";
+  "group relative inline-flex items-center justify-center gap-2 rounded-full font-semibold tracking-wide transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:opacity-60 disabled:pointer-events-none";
 
 const variants: Record<Variant, string> = {
   primary:
     "bg-gradient-to-br from-gold-soft to-gold text-[#1a1205] shadow-[0_10px_30px_-8px_rgba(240,180,41,0.6)] hover:shadow-[0_16px_40px_-8px_rgba(240,180,41,0.75)] hover:-translate-y-0.5",
   outline:
-    "border border-white/25 text-white hover:border-gold/70 hover:bg-white/5 hover:-translate-y-0.5",
-  ghost: "text-white/80 hover:text-white hover:bg-white/5",
+    "border border-line text-foreground hover:border-gold/70 hover:bg-surface2 hover:-translate-y-0.5",
+  ghost: "text-foreground hover:text-foreground hover:bg-surface2",
   whatsapp:
     "bg-[#25D366] text-[#06310f] shadow-[0_10px_30px_-8px_rgba(37,211,102,0.6)] hover:-translate-y-0.5 hover:shadow-[0_16px_40px_-8px_rgba(37,211,102,0.7)]",
 };

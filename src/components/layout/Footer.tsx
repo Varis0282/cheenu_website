@@ -26,7 +26,7 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer className="relative mt-24 overflow-hidden border-t border-white/10 bg-midnight">
+    <footer className="dark relative mt-24 overflow-hidden border-t border-line bg-midnight">
       <div className="pointer-events-none absolute inset-0 spotlight opacity-50" />
       <div className="pointer-events-none absolute -left-10 top-10 h-40 w-40 rounded-full bg-gold/10 blur-3xl" />
 
@@ -35,17 +35,17 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <Logo />
-            <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/60">
+            <p className="mt-5 max-w-xs text-sm leading-relaxed text-muted">
               {siteConfig.description}
             </p>
-            <p className="mt-5 font-script text-2xl text-gold-soft">
+            <p className="mt-5 font-script text-2xl text-accent">
               Let&apos;s Explore Together
             </p>
           </div>
 
           {/* Quick links */}
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-white">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-foreground">
               Explore
             </h3>
             <ul className="mt-4 space-y-3">
@@ -53,7 +53,7 @@ export default function Footer() {
                 <li key={l.href}>
                   <Link
                     href={l.href}
-                    className="text-sm text-white/60 transition-colors hover:text-gold-soft"
+                    className="text-sm text-muted transition-colors hover:text-accent"
                   >
                     {l.label}
                   </Link>
@@ -64,7 +64,7 @@ export default function Footer() {
 
           {/* Destinations */}
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-white">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-foreground">
               Destinations
             </h3>
             <ul className="mt-4 space-y-3">
@@ -72,7 +72,7 @@ export default function Footer() {
                 <li key={d.slug}>
                   <Link
                     href={`/destinations/${d.slug}`}
-                    className="flex items-center gap-2 text-sm text-white/60 transition-colors hover:text-gold-soft"
+                    className="flex items-center gap-2 text-sm text-muted transition-colors hover:text-accent"
                   >
                     <span>{d.flag}</span>
                     {d.name}
@@ -84,30 +84,30 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-white">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-foreground">
               Get in Touch
             </h3>
             <ul className="mt-4 space-y-4 text-sm">
               <li>
                 <a
                   href={`tel:${siteConfig.phoneIntl}`}
-                  className="flex items-center gap-3 text-white/65 transition-colors hover:text-gold-soft"
+                  className="flex items-center gap-3 text-muted transition-colors hover:text-accent"
                 >
-                  <Phone className="h-4 w-4 shrink-0 text-gold" />
+                  <Phone className="h-4 w-4 shrink-0 text-accent" />
                   {siteConfig.phoneDisplay}
                 </a>
               </li>
               <li>
                 <a
                   href={`mailto:${siteConfig.email}`}
-                  className="flex items-center gap-3 break-all text-white/65 transition-colors hover:text-gold-soft"
+                  className="flex items-center gap-3 break-all text-muted transition-colors hover:text-accent"
                 >
-                  <Mail className="h-4 w-4 shrink-0 text-gold" />
+                  <Mail className="h-4 w-4 shrink-0 text-accent" />
                   {siteConfig.email}
                 </a>
               </li>
-              <li className="flex items-center gap-3 text-white/65">
-                <MapPin className="h-4 w-4 shrink-0 text-gold" />
+              <li className="flex items-center gap-3 text-muted">
+                <MapPin className="h-4 w-4 shrink-0 text-accent" />
                 {siteConfig.location}
               </li>
             </ul>
@@ -120,7 +120,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={s.label}
-                  className="inline-flex h-10 w-10 items-center justify-center rounded-full glass text-white/70 transition-all hover:-translate-y-0.5 hover:text-gold-soft"
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-full glass text-muted transition-all hover:-translate-y-0.5 hover:text-accent"
                 >
                   <s.icon className="h-4.5 w-4.5" />
                 </a>
@@ -129,12 +129,12 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 text-center sm:flex-row sm:text-left">
-          <p className="text-xs text-white/45">
+        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-line pt-6 text-center sm:flex-row sm:text-left">
+          <p className="text-xs text-faint">
             © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
           </p>
-          <p className="flex items-center gap-1.5 text-xs text-white/45">
-            <Plane className="h-3.5 w-3.5 text-gold" />
+          <p className="flex items-center gap-1.5 text-xs text-faint">
+            <Plane className="h-3.5 w-3.5 text-accent" />
             One World. Many Stories. Let&apos;s Explore Together.
           </p>
         </div>

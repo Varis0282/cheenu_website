@@ -60,15 +60,15 @@ export default function WhyChooseUs() {
         <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {reasons.map((r, i) => (
             <Reveal key={r.title} delay={(i % 3) * 0.08}>
-              <div className="card-glow group relative h-full overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] p-7 transition-colors hover:bg-white/[0.05]">
+              <div className="card-glow group relative h-full overflow-hidden rounded-2xl border border-line bg-surface p-7 transition-colors hover:bg-surface2">
                 <div className="pointer-events-none absolute -right-8 -top-8 h-28 w-28 rounded-full bg-gold/5 blur-2xl transition-opacity duration-500 group-hover:opacity-100" />
-                <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-gold/20 to-gold/5 text-gold ring-1 ring-gold/20">
+                <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-gold/20 to-gold/5 text-accent ring-1 ring-gold/20">
                   <r.icon className="h-6 w-6" strokeWidth={1.6} />
                 </div>
-                <h3 className="mt-5 font-display text-xl font-bold text-white">
+                <h3 className="mt-5 font-display text-xl font-bold text-foreground">
                   {r.title}
                 </h3>
-                <p className="mt-2.5 text-sm leading-relaxed text-white/60">
+                <p className="mt-2.5 text-sm leading-relaxed text-muted">
                   {r.description}
                 </p>
               </div>

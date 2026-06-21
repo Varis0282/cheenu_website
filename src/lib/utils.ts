@@ -11,3 +11,8 @@ export function whatsappLink(phoneIntl: string, message?: string) {
   const base = `https://wa.me/${phoneIntl.replace(/\D/g, "")}`;
   return message ? `${base}?text=${encodeURIComponent(message)}` : base;
 }
+
+/** Format a number as Indian rupees, e.g. 132000 → "₹1,32,000". */
+export function formatINR(amount: number) {
+  return `₹${new Intl.NumberFormat("en-IN").format(amount)}`;
+}

@@ -90,9 +90,17 @@ export default function RootLayout({
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className={`${jakarta.variable} ${playfair.variable} ${caveat.variable}`}
+      suppressHydrationWarning
+      className={`dark ${jakarta.variable} ${playfair.variable} ${caveat.variable}`}
     >
-      <body className="min-h-screen flex flex-col bg-ink antialiased">
+      <body className="min-h-screen flex flex-col bg-background antialiased">
+        {/* Apply the saved theme before paint to avoid a flash. Default: dark. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "(function(){try{var t=localStorage.getItem('theme');if(t==='light'){document.documentElement.classList.remove('dark')}else{document.documentElement.classList.add('dark')}}catch(e){}})();",
+          }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

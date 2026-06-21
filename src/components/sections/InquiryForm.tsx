@@ -74,14 +74,14 @@ export default function InquiryForm({
 
   if (sent) {
     return (
-      <div className="flex flex-col items-center justify-center rounded-3xl border border-white/10 bg-white/[0.03] p-10 text-center">
+      <div className="flex flex-col items-center justify-center rounded-3xl border border-line bg-surface p-10 text-center">
         <div className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-[#25D366]/15 text-[#25D366]">
           <Check className="h-8 w-8" strokeWidth={2.5} />
         </div>
-        <h3 className="mt-5 font-display text-2xl font-bold text-white">
+        <h3 className="mt-5 font-display text-2xl font-bold text-foreground">
           You&apos;re all set!
         </h3>
-        <p className="mt-2 max-w-sm text-sm text-white/65">
+        <p className="mt-2 max-w-sm text-sm text-muted">
           WhatsApp should have opened with your details ready to send. If it
           didn&apos;t, tap the button below or email us — we&apos;ll reply quickly.
         </p>
@@ -99,7 +99,7 @@ export default function InquiryForm({
               setSent(false);
               setForm({ ...empty, destination: defaultDestination });
             }}
-            className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-white/80 hover:bg-white/5"
+            className="inline-flex items-center justify-center gap-2 rounded-full border border-line px-6 py-3 text-sm font-semibold text-foreground hover:bg-surface2"
           >
             Send another
           </button>
@@ -109,13 +109,13 @@ export default function InquiryForm({
   }
 
   const inputClass =
-    "w-full rounded-xl border border-white/12 bg-white/[0.04] px-4 py-3 text-sm text-white placeholder-white/35 outline-none transition focus:border-gold/60 focus:bg-white/[0.06] focus:ring-2 focus:ring-gold/20";
-  const labelClass = "mb-1.5 block text-xs font-medium uppercase tracking-wide text-white/55";
+    "w-full rounded-xl border border-line bg-surface2 px-4 py-3 text-sm text-foreground placeholder-faint outline-none transition focus:border-gold/60 focus:bg-surface2 focus:ring-2 focus:ring-gold/20";
+  const labelClass = "mb-1.5 block text-xs font-medium uppercase tracking-wide text-muted";
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="rounded-3xl border border-white/10 bg-white/[0.03] p-6 sm:p-8"
+      className="rounded-3xl border border-line bg-surface p-6 sm:p-8"
     >
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="sm:col-span-2">
@@ -176,13 +176,13 @@ export default function InquiryForm({
         )}
       </button>
 
-      <div className="mt-4 flex items-center justify-center gap-1.5 text-xs text-white/50">
+      <div className="mt-4 flex items-center justify-center gap-1.5 text-xs text-faint">
         <span>Prefer email?</span>
-        <a href={emailHref} className="inline-flex items-center gap-1 font-medium text-gold-soft hover:underline">
+        <a href={emailHref} className="inline-flex items-center gap-1 font-medium text-accent hover:underline">
           <Mail className="h-3.5 w-3.5" /> Email us instead
         </a>
       </div>
-      <p className="mt-3 text-center text-[11px] text-white/40">
+      <p className="mt-3 text-center text-[11px] text-faint">
         No payment needed. We&apos;ll reply with a tailored plan — usually within a few hours.
       </p>
     </form>

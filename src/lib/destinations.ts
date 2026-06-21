@@ -31,6 +31,8 @@ export type Destination = {
   intro: string;
   /** Closing brochure line. */
   closing: string;
+  /** Starting price per person, in INR. */
+  price: number;
   scene: "desert" | "marina" | "bay" | "island";
   /** Theme colours used to build gradients (any valid CSS colour). */
   theme: {
@@ -48,6 +50,10 @@ export type Destination = {
   badges: string[];
 };
 
+/** Build an Unsplash CDN URL (free for commercial use) at a given width. */
+const u = (id: string, w = 1600) =>
+  `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&q=80`;
+
 export const destinations: Destination[] = [
   {
     slug: "vietnam",
@@ -61,6 +67,8 @@ export const destinations: Destination[] = [
     intro:
       "From vibrant cities to serene landscapes, Vietnam is a journey that stays with you forever. Cruise emerald bays, wander ancient towns and taste flavours you'll never forget.",
     closing: "Vietnam — Where Every Moment Becomes a Memory.",
+    price: 59900,
+    image: u("1587233606800-1302fdd0a433"),
     scene: "bay",
     theme: {
       from: "#0c2a23",
@@ -150,6 +158,8 @@ export const destinations: Destination[] = [
     intro:
       "Bali is more than a destination, it's an experience of a lifetime. From stunning beaches and lush landscapes to rich culture and exhilarating adventures — Bali has it all.",
     closing: "Bali — Where Every Moment Becomes Magic.",
+    price: 92999,
+    image: u("1537996194471-e657df975ab4"),
     scene: "island",
     theme: {
       from: "#0a2e2a",
@@ -239,6 +249,8 @@ export const destinations: Destination[] = [
     intro:
       "Singapore is where modern wonders meet natural beauty, exciting attractions meet rich culture, and every moment becomes a memory to treasure.",
     closing: "Singapore — Where Every Moment Inspires You.",
+    price: 132000,
+    image: u("1525625293386-3f8f99389edd"),
     scene: "marina",
     theme: {
       from: "#0a1c3d",
@@ -328,6 +340,8 @@ export const destinations: Destination[] = [
     intro:
       "Dubai is not just a destination, it's an adventure playground where modern marvels meet thrilling experiences — soaring towers, golden deserts and unmatched luxury.",
     closing: "Dubai — Where Every Moment Is Extraordinary.",
+    price: 89900,
+    image: u("1512453979798-5ea266f8880c"),
     scene: "desert",
     theme: {
       from: "#0a1730",
@@ -418,14 +432,15 @@ export type GroupRegion = {
   tagline: string;
   scene: "desert" | "marina" | "bay" | "island" | "city" | "alps";
   accent: string;
+  image: string;
 };
 
 export const groupRegions: GroupRegion[] = [
-  { name: "Europe", flag: "🇪🇺", tagline: "Timeless Cities · Rich Culture", scene: "city", accent: "#60a5fa" },
-  { name: "Japan", flag: "🇯🇵", tagline: "Tradition Meets Modernity", scene: "city", accent: "#fb7185" },
-  { name: "Southeast Asia", flag: "🏝️", tagline: "Exotic Beaches · Vibrant Cultures", scene: "island", accent: "#34d399" },
-  { name: "Dubai", flag: "🇦🇪", tagline: "Luxury Shopping · Desert Adventures", scene: "desert", accent: "#f0b429" },
-  { name: "Switzerland", flag: "🇨🇭", tagline: "Breathtaking Views · Peaceful Escapes", scene: "alps", accent: "#818cf8" },
+  { name: "Europe", flag: "🇪🇺", tagline: "Timeless Cities · Rich Culture", scene: "city", accent: "#60a5fa", image: u("1502602898657-3e91760cbb34") },
+  { name: "Japan", flag: "🇯🇵", tagline: "Tradition Meets Modernity", scene: "city", accent: "#fb7185", image: u("1578271887552-5ac3a72752bc") },
+  { name: "Southeast Asia", flag: "🏝️", tagline: "Exotic Beaches · Vibrant Cultures", scene: "island", accent: "#34d399", image: u("1506665531195-3566af2b4dfa") },
+  { name: "Dubai", flag: "🇦🇪", tagline: "Luxury Shopping · Desert Adventures", scene: "desert", accent: "#f0b429", image: u("1512453979798-5ea266f8880c") },
+  { name: "Switzerland", flag: "🇨🇭", tagline: "Breathtaking Views · Peaceful Escapes", scene: "alps", accent: "#818cf8", image: u("1527668752968-14dc70a27c95") },
 ];
 
 export const tourHighlights = [

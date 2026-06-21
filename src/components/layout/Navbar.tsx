@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "motion/react";
 import { ChevronDown, Menu, X, Phone } from "lucide-react";
 import Logo from "./Logo";
+import ThemeToggle from "./ThemeToggle";
 import Button from "@/components/ui/Button";
 import { destinations } from "@/lib/destinations";
 import { siteConfig } from "@/lib/site";
@@ -42,8 +43,8 @@ export default function Navbar() {
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-all duration-500",
         scrolled
-          ? "glass-strong border-b border-white/10 py-2.5 shadow-[0_8px_30px_-12px_rgba(0,0,0,0.6)]"
-          : "bg-transparent py-4",
+          ? "glass-strong border-b border-line py-2.5 shadow-[0_8px_30px_-12px_rgba(0,0,0,0.6)]"
+          : "glass border-transparent py-4",
       )}
     >
       <nav className="container-x flex items-center justify-between gap-4">
@@ -61,7 +62,7 @@ export default function Navbar() {
               >
                 <Link
                   href={link.href}
-                  className="flex items-center gap-1 rounded-full px-4 py-2 text-sm font-medium text-white/80 transition-colors hover:text-white"
+                  className="flex items-center gap-1 rounded-full px-4 py-2 text-sm font-medium text-foreground transition-colors hover:text-foreground"
                 >
                   {link.label}
                   <ChevronDown className="h-3.5 w-3.5 transition-transform group-hover:rotate-180" />
@@ -80,12 +81,12 @@ export default function Navbar() {
                           <Link
                             key={d.slug}
                             href={`/destinations/${d.slug}`}
-                            className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-white/80 transition-colors hover:bg-white/8 hover:text-white"
+                            className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-foreground transition-colors hover:bg-surface2 hover:text-foreground"
                           >
                             <span className="text-lg">{d.flag}</span>
                             <span>
                               <span className="block font-medium">{d.name}</span>
-                              <span className="block text-xs text-white/50">
+                              <span className="block text-xs text-faint">
                                 {d.country}
                               </span>
                             </span>
@@ -100,7 +101,7 @@ export default function Navbar() {
               <li key={link.label}>
                 <Link
                   href={link.href}
-                  className="rounded-full px-4 py-2 text-sm font-medium text-white/80 transition-colors hover:text-white"
+                  className="rounded-full px-4 py-2 text-sm font-medium text-foreground transition-colors hover:text-foreground"
                 >
                   {link.label}
                 </Link>
@@ -112,25 +113,29 @@ export default function Navbar() {
         <div className="hidden items-center gap-3 lg:flex">
           <a
             href={`tel:${siteConfig.phoneIntl}`}
-            className="flex items-center gap-2 text-sm font-medium text-white/70 transition-colors hover:text-gold-soft"
+            className="flex items-center gap-2 text-sm font-medium text-muted transition-colors hover:text-accent"
           >
             <Phone className="h-4 w-4" />
             {siteConfig.phoneDisplay}
           </a>
+          <ThemeToggle />
           <Button href="/contact" size="md">
             Plan My Trip
           </Button>
         </div>
 
-        {/* Mobile toggle */}
-        <button
-          onClick={() => setOpen((v) => !v)}
-          aria-label={open ? "Close menu" : "Open menu"}
-          aria-expanded={open}
-          className="inline-flex h-11 w-11 items-center justify-center rounded-full glass text-white lg:hidden"
-        >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
+        {/* Mobile actions */}
+        <div className="flex items-center gap-2 lg:hidden">
+          <ThemeToggle />
+          <button
+            onClick={() => setOpen((v) => !v)}
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full glass text-foreground"
+          >
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
       </nav>
 
       {/* Mobile drawer */}
@@ -150,19 +155,19 @@ export default function Navbar() {
                     <li key={link.label}>
                       <Link
                         href={link.href}
-                        className="block rounded-xl px-4 py-3 text-base font-medium text-white/85 transition-colors hover:bg-white/8"
+                        className="block rounded-xl px-4 py-3 text-base font-medium text-foreground transition-colors hover:bg-surface2"
                       >
                         {link.label}
                       </Link>
                     </li>
                   ))}
                 </ul>
-                <div className="mt-2 grid grid-cols-2 gap-2 border-t border-white/10 pt-3">
+                <div className="mt-2 grid grid-cols-2 gap-2 border-t border-line pt-3">
                   {destinations.map((d) => (
                     <Link
                       key={d.slug}
                       href={`/destinations/${d.slug}`}
-                      className="flex items-center gap-2 rounded-xl px-3 py-2 text-sm text-white/75 transition-colors hover:bg-white/8"
+                      className="flex items-center gap-2 rounded-xl px-3 py-2 text-sm text-muted transition-colors hover:bg-surface2"
                     >
                       <span>{d.flag}</span>
                       {d.name}

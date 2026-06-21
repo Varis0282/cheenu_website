@@ -61,17 +61,17 @@ export default function HowItWorks() {
 
           {steps.map((s, i) => (
             <Reveal key={s.step} delay={i * 0.12}>
-              <div className="relative h-full rounded-3xl border border-white/10 bg-midnight/60 p-7 text-center">
+              <div className="relative h-full rounded-3xl border border-line bg-surface p-7 text-center">
                 <div className="relative mx-auto inline-flex h-24 w-24 items-center justify-center">
                   <span className="absolute inset-0 rounded-full bg-gradient-to-br from-gold/20 to-transparent" />
                   <span className="absolute inset-2 rounded-full border border-gold/30" />
-                  <s.icon className="relative h-9 w-9 text-gold-soft" strokeWidth={1.5} />
+                  <s.icon className="relative h-9 w-9 text-accent" strokeWidth={1.5} />
                 </div>
-                <div className="mt-3 font-script text-2xl text-gold">{`Step ${s.step}`}</div>
-                <h3 className="mt-1 font-display text-2xl font-bold text-white">
+                <div className="mt-3 font-script text-2xl text-accent">{`Step ${s.step}`}</div>
+                <h3 className="mt-1 font-display text-2xl font-bold text-foreground">
                   {s.title}
                 </h3>
-                <p className="mx-auto mt-3 max-w-xs text-sm leading-relaxed text-white/60">
+                <p className="mx-auto mt-3 max-w-xs text-sm leading-relaxed text-muted">
                   {s.description}
                 </p>
               </div>

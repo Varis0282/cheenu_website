@@ -1,13 +1,14 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import { motion } from "motion/react";
 import { Sparkles, MessageCircle, ArrowRight, Star } from "lucide-react";
 import Button from "@/components/ui/Button";
 import Backdrop from "@/components/ui/Backdrop";
-import { destinations } from "@/lib/destinations";
+import { destinations, getDestination } from "@/lib/destinations";
 import { siteConfig } from "@/lib/site";
-import { whatsappLink } from "@/lib/utils";
+import { whatsappLink, formatINR } from "@/lib/utils";
 
 // Globe is WebGL-only; load it on the client after hydration.
 const Globe = dynamic(() => import("./Globe"), { ssr: false });
@@ -18,13 +19,13 @@ const stats = [
   { value: "24/7", label: "Trip Support" },
 ];
 
-// Floating glass pills around the globe.
+// Floating photo cards around the globe.
 const pills = [
-  { flag: "🇦🇪", name: "Dubai", pos: "left-[2%] top-[12%]", delay: "0s" },
-  { flag: "🇸🇬", name: "Singapore", pos: "right-[0%] top-[26%]", delay: "1.2s" },
-  { flag: "🇻🇳", name: "Vietnam", pos: "left-[4%] bottom-[20%]", delay: "0.6s" },
-  { flag: "🇮🇩", name: "Bali", pos: "right-[4%] bottom-[12%]", delay: "1.8s" },
-];
+  { slug: "dubai", pos: "left-[-2%] top-[10%]", delay: "0s" },
+  { slug: "singapore", pos: "right-[-4%] top-[24%]", delay: "1.2s" },
+  { slug: "vietnam", pos: "left-[0%] bottom-[18%]", delay: "0.6s" },
+  { slug: "bali", pos: "right-[-2%] bottom-[10%]", delay: "1.8s" },
+].map((p) => ({ ...p, dest: getDestination(p.slug)! }));
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -70,7 +71,7 @@ export default function Hero() {
             variants={fadeUp}
             initial="hidden"
             animate="show"
-            className="inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-medium uppercase tracking-[0.2em] text-gold-soft"
+            className="inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-medium uppercase tracking-[0.2em] text-accent"
           >
             <Sparkles className="h-3.5 w-3.5" />
             Discover · Explore · Experience
@@ -81,7 +82,7 @@ export default function Hero() {
             variants={fadeUp}
             initial="hidden"
             animate="show"
-            className="mt-6 font-display text-4xl font-bold leading-[1.05] text-white sm:text-5xl lg:text-6xl xl:text-7xl"
+            className="mt-6 font-display text-4xl font-bold leading-[1.05] text-foreground sm:text-5xl lg:text-6xl xl:text-7xl"
           >
             Unforgettable journeys to the world&apos;s most{" "}
             <span className="text-gradient-gold">beautiful places.</span>
@@ -92,7 +93,7 @@ export default function Hero() {
             variants={fadeUp}
             initial="hidden"
             animate="show"
-            className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-white/70 sm:text-lg lg:mx-0"
+            className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-muted sm:text-lg lg:mx-0"
           >
             From the temples of Bali to the towers of Dubai, we craft seamless
             international holidays from India — handpicked stays, every detail
@@ -135,7 +136,7 @@ export default function Hero() {
                 {destinations.map((d) => (
                   <span
                     key={d.slug}
-                    className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-midnight text-base"
+                    className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-line bg-surface2 text-base"
                     title={d.name}
                   >
                     {d.flag}
@@ -143,24 +144,24 @@ export default function Hero() {
                 ))}
               </div>
               <div className="text-left">
-                <div className="flex items-center gap-0.5 text-gold">
+                <div className="flex items-center gap-0.5 text-accent">
                   {Array.from({ length: 5 }).map((_, i) => (
                     <Star key={i} className="h-3.5 w-3.5 fill-current" />
                   ))}
                 </div>
-                <p className="text-xs text-white/55">Loved by happy travelers</p>
+                <p className="text-xs text-muted">Loved by happy travelers</p>
               </div>
             </div>
 
-            <div className="hidden h-10 w-px bg-white/15 sm:block" />
+            <div className="hidden h-10 w-px bg-line sm:block" />
 
             <div className="flex gap-6">
               {stats.map((s) => (
                 <div key={s.label} className="text-center lg:text-left">
-                  <div className="font-display text-2xl font-bold text-white">
+                  <div className="font-display text-2xl font-bold text-foreground">
                     {s.value}
                   </div>
-                  <div className="text-[11px] uppercase tracking-wide text-white/50">
+                  <div className="text-[11px] uppercase tracking-wide text-faint">
                     {s.label}
                   </div>
                 </div>
@@ -178,30 +179,46 @@ export default function Hero() {
         >
           {/* glow + rotating ring */}
           <div className="absolute inset-[8%] rounded-full bg-gold/10 blur-3xl" />
-          <div className="absolute inset-0 rounded-full border border-dashed border-white/10 animate-spin-slow" />
-          <div className="absolute inset-[6%] rounded-full border border-white/5" />
+          <div className="absolute inset-0 rounded-full border border-dashed border-line animate-spin-slow" />
+          <div className="absolute inset-[6%] rounded-full border border-line" />
 
           <div className="absolute inset-[6%]">
             <Globe />
           </div>
 
-          {/* floating destination pills */}
+          {/* floating destination photo cards */}
           {pills.map((p) => (
             <div
-              key={p.name}
+              key={p.slug}
               className={`absolute ${p.pos} animate-float`}
               style={{ animationDelay: p.delay }}
             >
-              <div className="flex items-center gap-2 rounded-full glass-strong px-3 py-1.5 text-sm font-medium text-white shadow-lg">
-                <span className="text-base">{p.flag}</span>
-                {p.name}
+              <div className="flex items-center gap-2.5 rounded-2xl glass-strong p-1.5 pr-3.5 shadow-xl">
+                <span className="relative h-11 w-14 shrink-0 overflow-hidden rounded-xl">
+                  <Image
+                    src={p.dest.image!}
+                    alt={p.dest.name}
+                    fill
+                    sizes="56px"
+                    className="object-cover"
+                  />
+                </span>
+                <span className="leading-tight">
+                  <span className="flex items-center gap-1 text-sm font-semibold text-foreground">
+                    <span>{p.dest.flag}</span>
+                    {p.dest.name}
+                  </span>
+                  <span className="text-[11px] text-accent">
+                    From {formatINR(p.dest.price)}
+                  </span>
+                </span>
               </div>
             </div>
           ))}
 
           {/* badge */}
-          <div className="absolute -bottom-2 left-1/2 -translate-x-1/2">
-            <div className="flex items-center gap-2 rounded-full border border-gold/30 bg-midnight/80 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-gold-soft backdrop-blur">
+          <div className="dark absolute -bottom-2 left-1/2 -translate-x-1/2">
+            <div className="flex items-center gap-2 rounded-full border border-gold/30 bg-midnight/80 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-accent backdrop-blur">
               <Sparkles className="h-3.5 w-3.5" />
               Unforgettable Experiences Await
             </div>
@@ -211,7 +228,7 @@ export default function Hero() {
 
       {/* scroll cue */}
       <div className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 lg:block">
-        <div className="flex h-10 w-6 items-start justify-center rounded-full border border-white/20 p-1.5">
+        <div className="flex h-10 w-6 items-start justify-center rounded-full border border-line p-1.5">
           <span className="h-2 w-1 rounded-full bg-gold animate-float" />
         </div>
       </div>

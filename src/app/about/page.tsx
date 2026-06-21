@@ -4,7 +4,8 @@ import PageHeader from "@/components/ui/PageHeader";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/ui/Reveal";
 import Button from "@/components/ui/Button";
-import DestinationScene from "@/components/ui/DestinationScene";
+import DestinationMedia from "@/components/ui/DestinationMedia";
+import { getDestination } from "@/lib/destinations";
 import { siteConfig } from "@/lib/site";
 import { whatsappLink } from "@/lib/utils";
 
@@ -69,13 +70,13 @@ export default function AboutPage() {
       <section className="py-16">
         <div className="container-x grid gap-10 lg:grid-cols-2 lg:items-center">
           <Reveal>
-            <span className="font-script text-2xl text-gold-soft sm:text-3xl">
+            <span className="font-script text-2xl text-accent sm:text-3xl">
               Our story
             </span>
-            <h2 className="mt-1 font-display text-3xl font-bold text-white sm:text-4xl">
+            <h2 className="mt-1 font-display text-3xl font-bold text-foreground sm:text-4xl">
               Travel, made personal
             </h2>
-            <div className="mt-5 space-y-4 text-white/70">
+            <div className="mt-5 space-y-4 text-muted">
               <p>
                 We started {siteConfig.name} with one simple belief: international
                 travel should feel exciting from the very first message — not
@@ -102,14 +103,21 @@ export default function AboutPage() {
           </Reveal>
 
           <Reveal delay={0.1}>
-            <div className="relative aspect-[4/5] overflow-hidden rounded-3xl border border-white/10">
-              <DestinationScene scene="marina" uid="about-scene" accent="#f0b429" />
+            <div className="dark relative aspect-[4/5] overflow-hidden rounded-3xl border border-line">
+              <DestinationMedia
+                scene="marina"
+                uid="about-scene"
+                image={getDestination("bali")?.image}
+                alt="Travel the world with us"
+                accent="#f0b429"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-ink/70 to-transparent" />
               <div className="absolute bottom-0 p-7">
-                <p className="font-script text-3xl text-gold-soft">
+                <p className="font-script text-3xl text-accent">
                   Let&apos;s Explore Together
                 </p>
-                <p className="mt-1 text-sm text-white/70">
+                <p className="mt-1 text-sm text-muted">
                   One world. Many stories. Yours next.
                 </p>
               </div>
@@ -133,14 +141,14 @@ export default function AboutPage() {
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {values.map((v, i) => (
               <Reveal key={v.title} delay={(i % 4) * 0.07}>
-                <div className="h-full rounded-2xl border border-white/10 bg-white/[0.03] p-6">
-                  <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-gold/20 to-transparent text-gold ring-1 ring-gold/20">
+                <div className="h-full rounded-2xl border border-line bg-surface p-6">
+                  <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-gold/20 to-transparent text-accent ring-1 ring-gold/20">
                     <v.icon className="h-6 w-6" strokeWidth={1.6} />
                   </div>
-                  <h3 className="mt-4 font-display text-lg font-bold text-white">
+                  <h3 className="mt-4 font-display text-lg font-bold text-foreground">
                     {v.title}
                   </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-white/60">
+                  <p className="mt-2 text-sm leading-relaxed text-muted">
                     {v.description}
                   </p>
                 </div>
@@ -154,13 +162,13 @@ export default function AboutPage() {
       <section className="py-12">
         <div className="container-x">
           <Reveal>
-            <div className="grid grid-cols-2 gap-4 rounded-3xl border border-white/10 bg-white/[0.03] p-8 sm:p-10 lg:grid-cols-4">
+            <div className="grid grid-cols-2 gap-4 rounded-3xl border border-line bg-surface p-8 sm:p-10 lg:grid-cols-4">
               {stats.map((s) => (
                 <div key={s.label} className="text-center">
                   <div className="font-display text-4xl font-bold text-gradient-gold">
                     {s.value}
                   </div>
-                  <div className="mt-1 text-xs uppercase tracking-wide text-white/55">
+                  <div className="mt-1 text-xs uppercase tracking-wide text-muted">
                     {s.label}
                   </div>
                 </div>
@@ -174,12 +182,12 @@ export default function AboutPage() {
       <section className="py-16">
         <div className="container-x">
           <Reveal>
-            <div className="flex flex-col items-center justify-between gap-6 rounded-3xl border border-white/10 bg-gradient-to-br from-navy to-midnight p-8 text-center sm:p-10 lg:flex-row lg:text-left">
+            <div className="dark flex flex-col items-center justify-between gap-6 rounded-3xl border border-line bg-gradient-to-br from-navy to-midnight p-8 text-center sm:p-10 lg:flex-row lg:text-left">
               <div>
-                <h2 className="font-display text-2xl font-bold text-white sm:text-3xl">
+                <h2 className="font-display text-2xl font-bold text-foreground sm:text-3xl">
                   Have a destination in mind?
                 </h2>
-                <p className="mt-2 text-white/65">
+                <p className="mt-2 text-muted">
                   Let&apos;s turn it into your next unforgettable trip.
                 </p>
               </div>

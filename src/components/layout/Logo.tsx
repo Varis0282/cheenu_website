@@ -38,10 +38,10 @@ export default function Logo({
       </span>
       {!compact && (
         <span className="flex flex-col leading-none">
-          <span className="font-display text-lg font-bold text-white">
+          <span className="font-display text-lg font-bold text-foreground">
             {siteConfig.name}
           </span>
-          <span className="text-[10px] font-medium uppercase tracking-[0.22em] text-gold-soft/80">
+          <span className="text-[10px] font-medium uppercase tracking-[0.22em] text-accent/80">
             International Holidays
           </span>
         </span>

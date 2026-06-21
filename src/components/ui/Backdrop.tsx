@@ -27,7 +27,7 @@ export default function Backdrop({
         className="absolute inset-0 opacity-[0.18]"
         style={{
           backgroundImage:
-            "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.35) 1px, transparent 0)",
+            "radial-gradient(circle at 1px 1px, color-mix(in srgb, var(--color-foreground) 35%, transparent) 1px, transparent 0)",
           backgroundSize: "44px 44px",
           maskImage: "radial-gradient(ellipse 80% 60% at 50% 40%, black, transparent)",
           WebkitMaskImage: "radial-gradient(ellipse 80% 60% at 50% 40%, black, transparent)",
@@ -47,12 +47,13 @@ export default function Backdrop({
       {starDots.map((s, i) => (
         <span
           key={i}
-          className="absolute rounded-full bg-white animate-twinkle"
+          className="absolute rounded-full animate-twinkle"
           style={{
             left: `${s.x}%`,
             top: `${s.y}%`,
             width: s.s,
             height: s.s,
+            background: "var(--color-foreground)",
             animationDelay: `${s.d}s`,
           }}
         />
