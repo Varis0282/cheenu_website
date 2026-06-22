@@ -7,6 +7,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { ChevronDown, Menu, X, Phone } from "lucide-react";
 import Logo from "./Logo";
 import ThemeToggle from "./ThemeToggle";
+import FreelanceCTA from "./FreelanceCTA";
 import Button from "@/components/ui/Button";
 import { destinations } from "@/lib/destinations";
 import { siteConfig } from "@/lib/site";
@@ -110,14 +111,15 @@ export default function Navbar() {
           )}
         </ul>
 
-        <div className="hidden items-center gap-3 lg:flex">
+        <div className="hidden items-center gap-2.5 lg:flex">
           <a
             href={`tel:${siteConfig.phoneIntl}`}
-            className="flex items-center gap-2 text-sm font-medium text-muted transition-colors hover:text-accent"
+            className="hidden items-center gap-2 text-sm font-medium text-muted transition-colors hover:text-accent xl:flex"
           >
             <Phone className="h-4 w-4" />
             {siteConfig.phoneDisplay}
           </a>
+          <FreelanceCTA />
           <ThemeToggle />
           <Button href="/contact" size="md">
             Plan My Trip
@@ -177,6 +179,10 @@ export default function Navbar() {
                 <Button href="/contact" className="mt-4 w-full" size="lg">
                   Plan My Trip
                 </Button>
+                <FreelanceCTA
+                  label={siteConfig.freelance.label}
+                  className="mt-3 w-full justify-center"
+                />
               </div>
             </div>
           </motion.div>

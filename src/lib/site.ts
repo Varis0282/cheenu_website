@@ -33,6 +33,33 @@ export const siteConfig = {
     youtube: "https://youtube.com",
     whatsapp: "https://wa.me/919340852824",
   },
+
+  /**
+   * Freelance / "I built this" promo — shown as a button in the header + a
+   * footer credit so this site doubles as a portfolio piece. Points at YOUR
+   * contact (the developer), not the travel business.
+   */
+  freelance: {
+    developer: "Varis",
+    label: "Want a website like this?",
+    email: "varis@paraleagle.ai",
+    /** Optional: digits only with country code (e.g. "919999999999").
+     *  If set, the button opens WhatsApp instead of email. */
+    whatsapp: "",
+  },
 } as const;
 
 export type SiteConfig = typeof siteConfig;
+
+/** Link for the "Want a website like this?" promo (WhatsApp if set, else email). */
+export function freelanceHref() {
+  const f = siteConfig.freelance;
+  const whatsapp = f.whatsapp as string; // configurable; "" by default
+  const msg = `Hi ${f.developer}! I saw the ${siteConfig.name} website and I'd love one like it for my business. Can we talk?`;
+  if (whatsapp) {
+    return `https://wa.me/${whatsapp.replace(/\D/g, "")}?text=${encodeURIComponent(msg)}`;
+  }
+  return `mailto:${f.email}?subject=${encodeURIComponent(
+    "I'd like a website like this",
+  )}&body=${encodeURIComponent(msg)}`;
+}
