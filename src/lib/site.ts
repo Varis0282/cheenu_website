@@ -48,7 +48,7 @@ export const siteConfig = {
     /** Digits only, with country code, for wa.me / tel:. */
     whatsapp: "919301825186",
     location: "Jabalpur, India",
-    instagram: "_itsvraj",
+    instagram: "itsvraj_",
     linkedin: "https://www.linkedin.com/in/varis-rajak/",
     portfolio: "https://portfolio-2-flame-nine.vercel.app/",
     /** Internal page the "Want a website?" buttons link to. */
