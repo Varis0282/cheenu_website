@@ -52,7 +52,7 @@ export default function Navbar() {
         <Logo />
 
         {/* Desktop nav */}
-        <ul className="hidden items-center gap-1 lg:flex">
+        <ul className="hidden items-center gap-0.5 xl:flex">
           {navLinks.map((link) =>
             link.dropdown ? (
               <li
@@ -63,7 +63,7 @@ export default function Navbar() {
               >
                 <Link
                   href={link.href}
-                  className="flex items-center gap-1 rounded-full px-4 py-2 text-sm font-medium text-foreground transition-colors hover:text-foreground"
+                  className="flex items-center gap-1 whitespace-nowrap rounded-full px-3 py-2 text-sm font-medium text-muted transition-colors hover:text-accent"
                 >
                   {link.label}
                   <ChevronDown className="h-3.5 w-3.5 transition-transform group-hover:rotate-180" />
@@ -102,7 +102,7 @@ export default function Navbar() {
               <li key={link.label}>
                 <Link
                   href={link.href}
-                  className="rounded-full px-4 py-2 text-sm font-medium text-foreground transition-colors hover:text-foreground"
+                  className="whitespace-nowrap rounded-full px-3 py-2 text-sm font-medium text-muted transition-colors hover:text-accent"
                 >
                   {link.label}
                 </Link>
@@ -111,23 +111,23 @@ export default function Navbar() {
           )}
         </ul>
 
-        <div className="hidden items-center gap-2.5 lg:flex">
+        <div className="hidden items-center gap-2.5 xl:flex">
           <a
             href={`tel:${siteConfig.phoneIntl}`}
-            className="hidden items-center gap-2 text-sm font-medium text-muted transition-colors hover:text-accent xl:flex"
+            className="hidden items-center gap-2 text-sm font-medium text-muted transition-colors hover:text-accent 2xl:flex"
           >
             <Phone className="h-4 w-4" />
             {siteConfig.phoneDisplay}
           </a>
-          <FreelanceCTA />
+          <FreelanceCTA className="whitespace-nowrap" />
           <ThemeToggle />
-          <Button href="/contact" size="md">
+          <Button href="/contact" size="md" className="whitespace-nowrap">
             Plan My Trip
           </Button>
         </div>
 
         {/* Mobile actions */}
-        <div className="flex items-center gap-2 lg:hidden">
+        <div className="flex items-center gap-2 xl:hidden">
           <ThemeToggle />
           <button
             onClick={() => setOpen((v) => !v)}
@@ -148,7 +148,7 @@ export default function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="overflow-hidden lg:hidden"
+            className="overflow-hidden xl:hidden"
           >
             <div className="container-x py-4">
               <div className="glass-strong rounded-3xl p-4">

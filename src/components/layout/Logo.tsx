@@ -37,7 +37,7 @@ export default function Logo({
         </svg>
       </span>
       {!compact && (
-        <span className="flex flex-col leading-none">
+        <span className="flex flex-col leading-none whitespace-nowrap">
           <span className="font-display text-lg font-bold text-foreground">
             {siteConfig.name}
           </span>
