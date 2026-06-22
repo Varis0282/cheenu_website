@@ -40,26 +40,20 @@ export const siteConfig = {
    * contact (the developer), not the travel business.
    */
   freelance: {
-    developer: "Varis",
+    developer: "Varis Rajak",
+    role: "Web Designer & Developer",
     label: "Want a website like this?",
-    email: "varis@paraleagle.ai",
-    /** Optional: digits only with country code (e.g. "919999999999").
-     *  If set, the button opens WhatsApp instead of email. */
-    whatsapp: "",
+    email: "varisrajakforth11@gmail.com",
+    phoneDisplay: "+91 93018 25186",
+    /** Digits only, with country code, for wa.me / tel:. */
+    whatsapp: "919301825186",
+    location: "Jabalpur, India",
+    instagram: "_itsvraj",
+    linkedin: "https://www.linkedin.com/in/varis-rajak/",
+    portfolio: "https://portfolio-2-flame-nine.vercel.app/",
+    /** Internal page the "Want a website?" buttons link to. */
+    page: "/web-design",
   },
 } as const;
 
 export type SiteConfig = typeof siteConfig;
-
-/** Link for the "Want a website like this?" promo (WhatsApp if set, else email). */
-export function freelanceHref() {
-  const f = siteConfig.freelance;
-  const whatsapp = f.whatsapp as string; // configurable; "" by default
-  const msg = `Hi ${f.developer}! I saw the ${siteConfig.name} website and I'd love one like it for my business. Can we talk?`;
-  if (whatsapp) {
-    return `https://wa.me/${whatsapp.replace(/\D/g, "")}?text=${encodeURIComponent(msg)}`;
-  }
-  return `mailto:${f.email}?subject=${encodeURIComponent(
-    "I'd like a website like this",
-  )}&body=${encodeURIComponent(msg)}`;
-}

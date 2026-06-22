@@ -7,7 +7,7 @@ import {
   YoutubeIcon,
   WhatsappIcon,
 } from "@/components/ui/BrandIcons";
-import { siteConfig, freelanceHref } from "@/lib/site";
+import { siteConfig } from "@/lib/site";
 import { destinations } from "@/lib/destinations";
 
 const quickLinks = [
@@ -131,10 +131,8 @@ export default function Footer() {
 
         {/* Freelance / "I built this" promo */}
         <div className="mt-12 flex justify-center">
-          <a
-            href={freelanceHref()}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href={siteConfig.freelance.page}
             className="group inline-flex items-center gap-2.5 rounded-full border border-accent/30 bg-accent/5 px-5 py-2.5 text-sm text-muted transition-all hover:-translate-y-0.5 hover:text-accent"
           >
             <Rocket className="h-4 w-4 shrink-0 text-accent transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
@@ -142,7 +140,7 @@ export default function Footer() {
               Love this website?{" "}
               <span className="font-semibold text-accent">{siteConfig.freelance.label}</span>
             </span>
-          </a>
+          </Link>
         </div>
 
         <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-line pt-6 text-center sm:flex-row sm:text-left">
