@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import { motion } from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
 import { Sparkles, MessageCircle, ArrowRight, Star } from "lucide-react";
 import Button from "@/components/ui/Button";
 import Backdrop from "@/components/ui/Backdrop";
@@ -41,6 +41,10 @@ export default function Hero() {
     siteConfig.phoneIntl,
     "Hi! I'd love to plan an international trip. Can you share some options?",
   );
+
+  // Gentle parallax: the globe drifts up a touch as you scroll past the hero.
+  const { scrollY } = useScroll();
+  const globeY = useTransform(scrollY, [0, 700], [0, -70]);
 
   return (
     <section className="relative flex min-h-screen items-center overflow-hidden pt-28 pb-16">
@@ -175,6 +179,7 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.85 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          style={{ y: globeY }}
           className="relative mx-auto aspect-square w-full max-w-[34rem]"
         >
           {/* glow + rotating ring */}

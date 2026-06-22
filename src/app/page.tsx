@@ -1,6 +1,7 @@
 import Hero from "@/components/sections/Hero";
 import MarqueeStrip from "@/components/sections/MarqueeStrip";
 import DestinationsShowcase from "@/components/sections/DestinationsShowcase";
+import FlightPath from "@/components/sections/FlightPath";
 import WhyChooseUs from "@/components/sections/WhyChooseUs";
 import HowItWorks from "@/components/sections/HowItWorks";
 import GroupToursTeaser from "@/components/sections/GroupToursTeaser";
@@ -13,6 +14,7 @@ export default function Home() {
       <Hero />
       <MarqueeStrip />
       <DestinationsShowcase />
+      <FlightPath />
       <WhyChooseUs />
       <HowItWorks />
       <GroupToursTeaser />

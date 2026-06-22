@@ -1,6 +1,7 @@
 import { MessageSquareHeart, Map, PlaneTakeoff } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/ui/Reveal";
+import HowItWorksConnector from "./HowItWorksConnector";
 
 const steps = [
   {
@@ -42,22 +43,8 @@ export default function HowItWorks() {
         />
 
         <div className="relative mt-16 grid gap-6 md:grid-cols-3">
-          {/* connecting dashed line (desktop) */}
-          <div className="pointer-events-none absolute left-0 right-0 top-12 hidden md:block">
-            <svg className="h-2 w-full" preserveAspectRatio="none" viewBox="0 0 1000 8">
-              <line
-                x1="80"
-                y1="4"
-                x2="920"
-                y2="4"
-                stroke="#f0b429"
-                strokeOpacity="0.4"
-                strokeWidth="2"
-                strokeDasharray="2 8"
-                strokeLinecap="round"
-              />
-            </svg>
-          </div>
+          {/* connecting dashed line + flying plane (desktop) */}
+          <HowItWorksConnector />
 
           {steps.map((s, i) => (
             <Reveal key={s.step} delay={i * 0.12}>

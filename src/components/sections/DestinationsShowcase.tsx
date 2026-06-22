@@ -18,15 +18,11 @@ export default function DestinationsShowcase() {
           subtitle="Each one curated end-to-end — flights, stays, sightseeing and the little moments in between."
         />
 
-        {/* Bento-style grid: first card spans wider on large screens. */}
-        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {/* Equal-weight grid for the four destinations. */}
+        <div className="mt-14 grid gap-5 sm:grid-cols-2">
           {destinations.map((d, i) => (
-            <Reveal
-              key={d.slug}
-              delay={i * 0.08}
-              className={i === 0 ? "lg:col-span-2" : ""}
-            >
-              <DestinationCard destination={d} featured={i === 0} className="h-full" />
+            <Reveal key={d.slug} delay={(i % 2) * 0.1}>
+              <DestinationCard destination={d} featured className="h-full" />
             </Reveal>
           ))}
         </div>
