@@ -7,6 +7,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import WhatsAppFab from "@/components/layout/WhatsAppFab";
 import ScrollProgress from "@/components/layout/ScrollProgress";
+import ScrollBackground from "@/components/layout/ScrollBackground";
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -105,9 +106,10 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        <ScrollBackground />
         <ScrollProgress />
         <Navbar />
-        <main className="flex-1">{children}</main>
+        <main className="relative z-10 flex-1">{children}</main>
         <Footer />
         <WhatsAppFab />
       </body>
